@@ -50,25 +50,28 @@ public class AddVoteServlet extends HttpServlet {
             
             /*Testing beans*/
             out.println(currBean.getMusicType());
+            out.println(currBean.getNewMusicType());
             
             out.println("</br> Below is from vote.html </br>");
             
             
             /* Testing out if the database returns my musictype and numvotes */
-            String musicType = request.getParameter("music");
+            String musicType = currBean.getMusicType();
+            String newMusicType = currBean.getNewMusicType();
             Connection connection = dataSource.getConnection();
-            
-            String sqlSelect = "select * from votes where musictype=?";
-            PreparedStatement selectStatement = connection.prepareStatement(sqlSelect);
-            selectStatement.setString(1, musicType);
-            ResultSet resultSet = selectStatement.executeQuery();
-            while (resultSet.next()) {
-                String mt = resultSet.getString("MUSICTYPE");
-                currVotes = resultSet.getInt("NUMVOTES");
-                out.println(mt+": "+currVotes + "<br/>");
-            }
-            resultSet.close();                     
-            selectStatement.close();
+            /* Here I want to check the current number of votes in either Pop or Rock, as long as it is not null */
+            if (musicType!=null) {
+                String sqlSelect = "select * from votes where musictype=?";
+                PreparedStatement selectStatement = connection.prepareStatement(sqlSelect);
+                selectStatement.setString(1, musicType);
+                ResultSet resultSet = selectStatement.executeQuery();
+                while (resultSet.next()) {
+                    String mt = resultSet.getString("MUSICTYPE");
+                    currVotes = resultSet.getInt("NUMVOTES");
+                    //out.println(mt+": "+currVotes + "<br/>");
+                }
+                resultSet.close();                     
+                selectStatement.close();
             
             /* Inserting into the database the vote without bean*/
             /**currVotes++;
@@ -81,12 +84,23 @@ public class AddVoteServlet extends HttpServlet {
             * */
             
             /*Inserting into database the vote with bean*/
-            currVotes++;
-            String sqlUpdate = "update votes set numvotes=? where musictype=?";
-            PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate);
-            updateStatement.setInt(1, currVotes);
-            updateStatement.setString(2, musicType);
-            updateStatement.executeUpdate();
+                currVotes++;
+                String sqlUpdate = "update votes set numvotes=? where musictype=?";
+                PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate);
+                updateStatement.setInt(1, currVotes);
+                updateStatement.setString(2, musicType);
+                updateStatement.executeUpdate();
+            }
+            
+            if (newMusicType!=null) {
+                String sqlInsert = "insert into votes (musictype, numvotes) values(?,?)";
+                PreparedStatement insertStatement = connection.prepareStatement(sqlInsert);
+                insertStatement.setString(1, newMusicType);
+                insertStatement.setInt(2, 1);
+                insertStatement.executeUpdate();
+            }      
+            
+            
             
                    
             

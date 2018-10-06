@@ -8,6 +8,14 @@
         <servlet-name>AddNewVoteServlet</servlet-name>
         <servlet-class>servlets.AddNewVoteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AV2servlet</servlet-name>
+        <servlet-class>servlets.AV2servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ANV2servlet</servlet-name>
+        <servlet-class>servlets.ANV2servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddVoteServlet</servlet-name>
         <url-pattern>/AddVoteServlet</url-pattern>
@@ -16,6 +24,18 @@
         <servlet-name>AddNewVoteServlet</servlet-name>
         <url-pattern>/AddNewVoteServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AV2servlet</servlet-name>
+        <url-pattern>/AV2servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ANV2servlet</servlet-name>
+        <url-pattern>/ANV2servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StartPageServlet</servlet-name>
+        <servlet-class>servlets.StartPageServlet</servlet-class>
+    </servlet>
     <session-config>
         <session-timeout>
             30

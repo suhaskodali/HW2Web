@@ -11,49 +11,66 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Suhas
  */
-@WebServlet(name = "StartPageServlet", urlPatterns = {"/StartPageServlet"})
-public class StartPageServlet extends HttpServlet {
-
+public class AV2servlet extends HttpServlet {
+    
     @Resource(name = "jdbc/HW2DB")
     private DataSource dataSource;
 
 
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-          
-          Connection connection = dataSource.getConnection();
-          String selectSQL = "select * from votes";
-          PreparedStatement selectStatement = connection.prepareStatement(selectSQL);
+        //response.setContentType("text/html;charset=UTF-8");
 
-          ResultSet rs = selectStatement.executeQuery();
-          while (rs.next()){
-            out.println(rs.getString("musicType")+" "+rs.getInt("numVotes")+"<br/>");
-          }
-          // look up matching records and display them
-          int counter = (int) request.getSession().getAttribute("counter");
-          counter++;
-          request.getSession().setAttribute("counter", counter);
-          out.println("session counter: "+ request.getSession().getAttribute("counter"));
-        }catch(Exception e){
-          out.println(e.getMessage());
-          e.printStackTrace();
-        }finally {      
-          out.close();
+        //PrintWriter out = response.getWriter();
+        try {
+            int currVotes = -2;
+            String musicType = request.getParameter("music");
+            Connection connection = dataSource.getConnection();
+            
+            /* Check the current number of votes for musictype */
+            String sql = "select numvotes from votes where musictype=?";
+            PreparedStatement selectSql = connection.prepareStatement(sql);
+            selectSql.setString(1, musicType);
+            ResultSet resultSet = selectSql.executeQuery();
+            while (resultSet.next()) {
+                currVotes = resultSet.getInt("NUMVOTES");
+            }
+            currVotes++;
+            
+            /* Add one new votes, i.e. currVotes, to appropriate musictype */
+            
+            String sqlUpdate = "update votes set numvotes=? where musictype=?";
+            PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate);
+            updateStatement.setInt(1, currVotes);
+            updateStatement.setString(2, musicType);
+            updateStatement.executeUpdate();
+            
         }
+        
+        catch (Exception e) {
+            //out.println("Error Occurred "+e.getMessage());
+            e.printStackTrace();
+        } finally {
+            //out.close();
+        }
+        
+                
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,7 +85,11 @@ public class StartPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/StartPageServlet");
+        dispatcher.forward(request, response);
+
     }
 
     /**

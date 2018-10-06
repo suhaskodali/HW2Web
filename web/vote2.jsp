@@ -1,9 +1,11 @@
+<%-- 
+    Document   : vote2
+    Created on : Oct 6, 2018, 4:41:19 PM
+    Author     : Suhas
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Vote Page</title>
@@ -24,7 +26,11 @@ and open the template in the editor.
             <input type="submit" value="Add type and vote"/>
         </form>
         <%
-        
+            Integer sessionCounter = (Integer) session.getAttribute("counter");
+            if (sessionCounter == null) {
+                sessionCounter = new Integer(0);
+            }
+            session.setAttribute("counter", sessionCounter);
         %>
     </body>
 </html>

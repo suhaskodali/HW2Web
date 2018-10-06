@@ -39,5 +39,7 @@
             session.setAttribute("counter", sessionCounter);
             out.println(sessionCounter);
         %>
+        
+        
     </body>
 </html>

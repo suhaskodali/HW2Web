@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form action="AddVoteServlet" method="get">
+        <form action="AV2servlet" method="get">
             Vote your favorite kind of music: <br/>
             <input type="radio" name="music" value="Pop" />Pop<br/>
             <input type="radio" name="music" value="Rock" />Rock<br/>
@@ -19,9 +19,12 @@ and open the template in the editor.
         </form>
         <br/>Or add new one!<br/><br/>
         
-        <form> <!--action="AddNewVoteServlet" method="get"-->
+        <form action="ANV2servlet" method="get">
             New Music Type:<input type="text" name="newmusic" value=""><br/>
             <input type="submit" value="Add type and vote"/>
         </form>
+        <%
+        
+        %>
     </body>
 </html>
