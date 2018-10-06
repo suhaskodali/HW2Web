@@ -16,6 +16,10 @@
         <servlet-name>ANV2servlet</servlet-name>
         <servlet-class>servlets.ANV2servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>indexServlet</servlet-name>
+        <servlet-class>servlets.indexServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddVoteServlet</servlet-name>
         <url-pattern>/AddVoteServlet</url-pattern>
@@ -36,6 +40,10 @@
         <servlet-name>StartPageServlet</servlet-name>
         <servlet-class>servlets.StartPageServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>indexServlet</servlet-name>
+        <url-pattern>/indexServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

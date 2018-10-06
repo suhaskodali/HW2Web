@@ -7,26 +7,16 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 /**
  *
  * @author Suhas
  */
-@WebServlet(name = "StartPageServlet", urlPatterns = {"/StartPageServlet"})
-public class StartPageServlet extends HttpServlet {
-
-    @Resource(name = "jdbc/HW2DB")
-    private DataSource dataSource;
+public class indexServlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -34,26 +24,14 @@ public class StartPageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-          
-          Connection connection = dataSource.getConnection();
-          String selectSQL = "select * from votes";
-          PreparedStatement selectStatement = connection.prepareStatement(selectSQL);
-
-          ResultSet rs = selectStatement.executeQuery();
-          while (rs.next()){
-            out.println(rs.getString("musicType")+" "+rs.getInt("numVotes")+"<br/>");
-          }
-          // look up matching records and display them
-          int counter = (int) request.getSession().getAttribute("counter");
-          counter++;
-          request.getSession().setAttribute("counter", counter);
-          out.println("session counter: "+ request.getSession().getAttribute("counter"));
-          
-        }catch(Exception e){
-          out.println(e.getMessage());
-          e.printStackTrace();
+            out.println("session counter: "+ request.getSession().getAttribute("counter"));
+            out.println("context counter:" + request.getSession().getAttribute("contextCounter"));
+        }
+        catch(Exception e){
+            out.println(e.getMessage());
+            e.printStackTrace();
         }finally {      
-          out.close();
+            out.close();
         }
     }
 

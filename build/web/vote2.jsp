@@ -31,6 +31,21 @@
                 sessionCounter = new Integer(0);
             }
             session.setAttribute("counter", sessionCounter);
+
+            Integer contextCounter = (Integer) application.getAttribute("counter");
+            if (contextCounter == null) {
+                contextCounter = new Integer(0);
+            }
+            contextCounter += 1;
+            application.setAttribute("counter", contextCounter);
+            
+
+            session.setAttribute("contextCounter", contextCounter);
+            
+            
+            
+
+                
         %>
     </body>
 </html>
