@@ -16,7 +16,7 @@ public class MusicVoteBean implements Serializable {
     
     private String musicType;
     private int numVotes;
-    private String newMusicType;
+
     
     public MusicVoteBean() {
         
@@ -26,18 +26,13 @@ public class MusicVoteBean implements Serializable {
         return musicType;
     }
     
-    public String getNewMusicType() {
-        return newMusicType;    
-    }
+
     
     public int getNumVotes() {
         return numVotes;
     }
     
-    public void setNewMusicType(String music) {
-        this.newMusicType = music;
-    }
-    
+
     public void setMusicType(String music) {
         this.musicType = music;
     }

@@ -10,7 +10,11 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +35,10 @@ public class StartPageServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+
+        List<MusicVoteBean> listOfMusicVoteBeans = new ArrayList<>();
+        String mT = null;
+        int nV = 0;
         try {
           
           Connection connection = dataSource.getConnection();
@@ -41,19 +47,32 @@ public class StartPageServlet extends HttpServlet {
 
           ResultSet rs = selectStatement.executeQuery();
           while (rs.next()){
-            out.println(rs.getString("musicType")+" "+rs.getInt("numVotes")+"<br/>");
+            mT = rs.getString("musicType");
+            nV = rs.getInt("numVotes");
+            MusicVoteBean newBean = new MusicVoteBean();
+            newBean.setMusicType(mT);
+            newBean.setNumVotes(nV);
+            listOfMusicVoteBeans.add(newBean);
+            //out.println(rs.getString("musicType")+" has "+rs.getInt("numVotes")+ " votes"+"<br/>");
           }
           // look up matching records and display them
           int counter = (int) request.getSession().getAttribute("counter");
           counter++;
           request.getSession().setAttribute("counter", counter);
-          out.println("session counter: "+ request.getSession().getAttribute("counter"));
+          request.getSession().setAttribute("listOfBeans", listOfMusicVoteBeans);
+          
+          ServletContext sc = getServletContext();
+          int contextCounter = (int) sc.getAttribute("contextCounter");
+          contextCounter++;
+          sc.setAttribute("contextCounter", contextCounter);
+
+          //out.println("I have voted "+ request.getSession().getAttribute("counter") + " times");
           
         }catch(Exception e){
-          out.println(e.getMessage());
+
           e.printStackTrace();
         }finally {      
-          out.close();
+
         }
     }
 
@@ -70,6 +89,8 @@ public class StartPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Start2Page2Servlet");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -84,6 +105,7 @@ public class StartPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**

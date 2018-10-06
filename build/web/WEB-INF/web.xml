@@ -20,6 +20,10 @@
         <servlet-name>indexServlet</servlet-name>
         <servlet-class>servlets.indexServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Start2Page2Servlet</servlet-name>
+        <servlet-class>servlets.Start2Page2Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddVoteServlet</servlet-name>
         <url-pattern>/AddVoteServlet</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>indexServlet</servlet-name>
         <url-pattern>/indexServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Start2Page2Servlet</servlet-name>
+        <url-pattern>/Start2Page2Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

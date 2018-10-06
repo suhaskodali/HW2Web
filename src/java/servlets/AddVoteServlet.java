@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Suhas
  */
-@WebServlet(name = "AddVoteServlet", urlPatterns = {"/AddVoteServlet"})
+@WebServlet(name = "AddVoteServlet", urlPatterns = {"/AddVoteServlet",})
 public class AddVoteServlet extends HttpServlet {
     
     @Resource(name = "jdbc/HW2DB")
@@ -50,14 +50,14 @@ public class AddVoteServlet extends HttpServlet {
             
             /*Testing beans*/
             out.println(currBean.getMusicType());
-            out.println(currBean.getNewMusicType());
+     //       out.println(currBean.getNewMusicType());
             
             out.println("</br> Below is from vote.html </br>");
             
             
             /* Testing out if the database returns my musictype and numvotes */
             String musicType = currBean.getMusicType();
-            String newMusicType = currBean.getNewMusicType();
+      //      String newMusicType = currBean.getNewMusicType();
             Connection connection = dataSource.getConnection();
             /* Here I want to check the current number of votes in either Pop or Rock, as long as it is not null */
             if (musicType!=null) {
@@ -91,7 +91,7 @@ public class AddVoteServlet extends HttpServlet {
                 updateStatement.setString(2, musicType);
                 updateStatement.executeUpdate();
             }
-            
+   /*         
             if (newMusicType!=null) {
                 String sqlInsert = "insert into votes (musictype, numvotes) values(?,?)";
                 PreparedStatement insertStatement = connection.prepareStatement(sqlInsert);
@@ -100,7 +100,7 @@ public class AddVoteServlet extends HttpServlet {
                 insertStatement.executeUpdate();
             }      
             
-            
+    */        
             
                    
             

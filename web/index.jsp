@@ -25,6 +25,8 @@
                 xmlhttp.open("GET", url, true);
                 xmlhttp.onreadystatechange = callback;
                 xmlhttp.send();
+
+                
             }
             
             function callback(){
@@ -38,13 +40,13 @@
         </script>
     </head>
     <body>
-        <a href="/P2Kodali/StartPageServlet">See voting results</a>
+        <a href="/P2Kodali/Start2Page2Servlet">See voting results</a>
         </br>
         
         <input type="button" value="My votes" onClick="LookUp();"/>
         <div id="results">
             
-        </div>
+
 
         
         
