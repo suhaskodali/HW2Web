@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Author: Suhas Kodali
+What? : This class receives request from the CreateBeansServlet. It prints a file that includes all the entries
+        from the database along with the numvotes. Also, this file prints the session counter. Importantly,
+        this class doesn't connect with the database, only using MusicVoteBeans to print.
+Date  : October 6, 2018
  */
 package servlets;
 
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Suhas
  */
-public class Start2Page2Servlet extends HttpServlet {
+public class StartPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +38,7 @@ public class Start2Page2Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Start2Page2Servlet</title>");            
+            out.println("<title>Servlet StartPageServlet</title>");            
             out.println("</head>");
             out.println("<body>");
             

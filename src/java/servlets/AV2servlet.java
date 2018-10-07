@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Author: Suhas Kodali
+What? : The class redirects the vote button and increments the chosen musictype's numvotes in the database
+        Additionally, this servlet forwards its request to CreateBeansServlet
+Date  : October 6, 2018
  */
 package servlets;
 

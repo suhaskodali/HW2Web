@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Author: Suhas Kodali
+What? : The class redirects the Add New Music Type button and adds the new musictype to the Database
+        Additionally, if the database already has the new music type, it increments its numvotes.
+        Lastly, this servlet forwards its request to the CreateBeansServlet
+Date  : October 6, 2018
  */
 package servlets;
 

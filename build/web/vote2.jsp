@@ -1,5 +1,6 @@
 <%-- 
     Document   : vote2
+    What?      : This jsp file allows user to vote on an existing Music Type or add a new music type and vote
     Created on : Oct 6, 2018, 4:41:19 PM
     Author     : Suhas
 --%>

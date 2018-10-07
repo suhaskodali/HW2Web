@@ -1,14 +1,13 @@
-<%-- 
-    Document   : index
-    Created on : Oct 4, 2018, 6:11:31 PM
-    Author     : Suhas
---%>
+<!-- Author: Suhas Kodali
+     What? : This file uses AJAX to show user how many times they voted and how many times all users voted
+             Additionally, it redirects to my StartServletPage when the hyperlinked is clicked
+     Date  : October 6, 2018
+    
+-->
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Index page</title>
         <script type="text/javascript">        
             var xmlhttp;
@@ -40,11 +39,13 @@
         </script>
     </head>
     <body>
-        <a href="/P2Kodali/Start2Page2Servlet">See voting results</a>
+        <a href="/P2Kodali/StartPageServlet">See voting results</a>
+        </br>
         </br>
         
         <input type="button" value="My votes" onClick="LookUp();"/>
         <div id="results">
+        </div>
             
 
 
@@ -52,3 +53,4 @@
         
     </body>
 </html>
+

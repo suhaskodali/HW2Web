@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Author: Suhas Kodali
+What? : The class is the AJAX call from index.html. It returns both the session and application counters.
+        I made sure if either counters are null, I output a 0 instead.
+Date  : October 6, 2018
  */
 package servlets;
 
@@ -26,10 +27,10 @@ public class indexServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if (request.getSession().getAttribute("counter")==null) {
-                out.println("I have voted "+ 0 +" times");
+                out.println("</br> I have voted "+ 0 +" times");
             }
             else {
-                out.println("I have voted "+ request.getSession().getAttribute("counter")+" times");
+                out.println("</br> I have voted "+ request.getSession().getAttribute("counter")+" times");
             }
             
             
