@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>AddVoteServlet</servlet-name>
-        <servlet-class>servlets.AddVoteServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddNewVoteServlet</servlet-name>
-        <servlet-class>servlets.AddNewVoteServlet</servlet-class>
-    </servlet>
+
+
     <servlet>
         <servlet-name>AV2servlet</servlet-name>
         <servlet-class>servlets.AV2servlet</servlet-class>
@@ -24,14 +18,8 @@
         <servlet-name>Start2Page2Servlet</servlet-name>
         <servlet-class>servlets.Start2Page2Servlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>AddVoteServlet</servlet-name>
-        <url-pattern>/AddVoteServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddNewVoteServlet</servlet-name>
-        <url-pattern>/AddNewVoteServlet</url-pattern>
-    </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>AV2servlet</servlet-name>
         <url-pattern>/AV2servlet</url-pattern>
@@ -41,9 +29,13 @@
         <url-pattern>/ANV2servlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>StartPageServlet</servlet-name>
-        <servlet-class>servlets.StartPageServlet</servlet-class>
+        <servlet-name>CreateBeansServlet</servlet-name>
+        <servlet-class>servlets.CreateBeansServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateBeansServlet</servlet-name>
+        <url-pattern>/CreateBeansServlet</url-pattern>
+    </servlet-mapping>    
     <servlet-mapping>
         <servlet-name>indexServlet</servlet-name>
         <url-pattern>/indexServlet</url-pattern>

@@ -87,7 +87,7 @@ public class AV2servlet extends HttpServlet {
             throws ServletException, IOException {
 
         processRequest(request, response);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/StartPageServlet");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateBeansServlet");
         dispatcher.forward(request, response);
 
     }

@@ -26,8 +26,8 @@ import javax.sql.DataSource;
  *
  * @author Suhas
  */
-@WebServlet(name = "StartPageServlet", urlPatterns = {"/StartPageServlet"})
-public class StartPageServlet extends HttpServlet {
+@WebServlet(name = "CreateBeansServlet", urlPatterns = {"/CreateBeansServlet"})
+public class CreateBeansServlet extends HttpServlet {
 
     @Resource(name = "jdbc/HW2DB")
     private DataSource dataSource;
@@ -62,11 +62,10 @@ public class StartPageServlet extends HttpServlet {
           request.getSession().setAttribute("listOfBeans", listOfMusicVoteBeans);
           
           ServletContext sc = getServletContext();
-          int contextCounter = (int) sc.getAttribute("contextCounter");
+          Integer contextCounter = (Integer) sc.getAttribute("contextCounter");
           contextCounter++;
           sc.setAttribute("contextCounter", contextCounter);
 
-          //out.println("I have voted "+ request.getSession().getAttribute("counter") + " times");
           
         }catch(Exception e){
 

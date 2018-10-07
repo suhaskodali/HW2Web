@@ -25,9 +25,21 @@ public class indexServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            out.println("I have voted "+ request.getSession().getAttribute("counter")+" times");
+            if (request.getSession().getAttribute("counter")==null) {
+                out.println("I have voted "+ 0 +" times");
+            }
+            else {
+                out.println("I have voted "+ request.getSession().getAttribute("counter")+" times");
+            }
+            
+            
             ServletContext sc = getServletContext();
-            out.println("</br>" +"All users since the start of the server have voted " + sc.getAttribute("contextCounter")+ " times");
+            if (sc.getAttribute("contextCounter")==null){
+                out.println("</br>" +"All users since the start of the server have voted " + 0 + " times"); 
+            }
+            else {
+                out.println("</br>" +"All users since the start of the server have voted " + sc.getAttribute("contextCounter")+ " times");
+            }
         }
         catch(Exception e){
             out.println(e.getMessage());

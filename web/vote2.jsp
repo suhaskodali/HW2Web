@@ -20,13 +20,11 @@
             }
             session.setAttribute("counter", sessionCounter);
 
-            Integer contextCounter = (Integer) application.getAttribute("counter");
+            Integer contextCounter = (Integer) application.getAttribute("contextCounter");
             if (contextCounter == null) {
                 contextCounter = new Integer(0);
-                
             }
-
-
+            application.setAttribute("contextCounter", contextCounter);
         %>
         <form action="AV2servlet" method="get">
             Vote your favorite kind of music: <br/>
